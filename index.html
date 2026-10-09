@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Layoff Readiness Check</title>
+<meta name="description" content="A free 4-minute self-assessment: see how exposed your job is, how strong your safety net is, and get a calm, practical action plan. No sign-up, no tracking.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Layoff Readiness Check">
+<meta property="og:description" content="A free 4-minute self-assessment: see how exposed your job is, how strong your safety net is, and get a calm, practical action plan. No sign-up, no tracking.">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#14262E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314262E'/%3E%3Crect x='7' y='7' width='8' height='8' rx='1.5' fill='%232E7A6B'/%3E%3Crect x='17' y='7' width='8' height='8' rx='1.5' fill='%23B9862A'/%3E%3Crect x='7' y='17' width='8' height='8' rx='1.5' fill='%23B9862A'/%3E%3Crect x='17' y='17' width='8' height='8' rx='1.5' fill='%23A63E36'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E8EDEF; --paper:#F7F9F9; --ink:#14262E; --muted:#56676E; --line:#C9D3D6;
+  --low:#2E7A6B; --mid:#B9862A; --high:#A63E36; --soft:#DCE4E6;
+  --sans:"Schibsted Grotesk", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E191D; --paper:#15242A; --ink:#E2EBED; --muted:#93A5AB; --line:#2A3D44;
+    --low:#4FB09C; --mid:#D9A846; --high:#D86A5F; --soft:#1C2E35;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E191D; --paper:#15242A; --ink:#E2EBED; --muted:#93A5AB; --line:#2A3D44;
+  --low:#4FB09C; --mid:#D9A846; --high:#D86A5F; --soft:#1C2E35;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+main{max-width:660px;margin:0 auto;padding:40px 22px 64px}
+h1{font-size:clamp(2.1rem,7vw,3.3rem);line-height:1.04;letter-spacing:-0.03em;font-weight:800;margin:0 0 18px}
+h2{font-size:1.35rem;letter-spacing:-0.01em;margin:0 0 10px;font-weight:700}
+h3{font-size:1.02rem;margin:0 0 4px;font-weight:600}
+p{margin:0 0 14px}
+.lede{font-family:var(--serif);font-size:1.25rem;line-height:1.55;color:var(--ink);max-width:36em}
+.meta{color:var(--muted);font-size:.93rem}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--low);outline-offset:2px}
+.btn{background:var(--ink);color:var(--paper);border:0;border-radius:999px;padding:14px 26px;font-weight:600;font-size:1rem}
+.btn:hover{opacity:.9}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn-quiet{background:transparent;border:1px solid var(--line);border-radius:999px;padding:12px 22px;font-weight:500}
+.link{background:none;border:0;padding:6px 0;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:.95rem;margin-bottom:44px}
+.brand svg{flex:none}
+
+/* quadrant */
+.quad{width:100%;max-width:440px;margin:28px 0 30px;display:block}
+.quad .zone-label{font-family:var(--sans);font-size:12.5px;font-weight:600;fill:var(--ink)}
+.quad .axis{font-family:var(--sans);font-size:12px;fill:var(--muted)}
+
+/* question */
+.progress{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
+.seg{height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.seg i{display:block;height:100%;background:var(--ink);transition:width .3s ease}
+.qtop{display:flex;justify-content:space-between;color:var(--muted);font-size:.9rem;margin-bottom:34px}
+.qtext{font-size:clamp(1.45rem,4.6vw,1.9rem);line-height:1.2;letter-spacing:-0.015em;font-weight:700;margin:0 0 8px}
+.qhelp{color:var(--muted);margin-bottom:22px}
+.opts{display:grid;gap:10px;margin:22px 0 26px}
+.opt{display:flex;align-items:center;gap:14px;text-align:left;background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:15px 18px;font-size:1rem;transition:border-color .15s}
+.opt:hover{border-color:var(--muted)}
+.opt[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt .mark{flex:none;width:20px;height:20px;border:1.5px solid var(--muted);border-radius:50%;display:grid;place-items:center}
+.opt.multi .mark{border-radius:5px}
+.opt[aria-pressed="true"] .mark{background:var(--ink);border-color:var(--ink)}
+.opt[aria-pressed="true"] .mark::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--paper)}
+.opt.multi[aria-pressed="true"] .mark::after{border-radius:2px}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:12px}
+
+/* results */
+.verdict{font-family:var(--serif);font-weight:500;font-size:clamp(2.2rem,8vw,3.4rem);line-height:1.02;letter-spacing:-0.02em;margin:0 0 14px}
+.scores{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:4px 0 8px}
+.score{background:var(--paper);border-radius:16px;padding:18px}
+.score .lab{color:var(--muted);font-size:.9rem}
+.score .band{font-size:1.5rem;font-weight:700;letter-spacing:-0.01em;margin:2px 0 10px}
+.bar{height:8px;border-radius:4px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:4px;width:0;transition:width 1s cubic-bezier(.2,.7,.2,1) .3s}
+.result-quad{margin:22px 0 8px}
+#dot{transition:transform 1.1s cubic-bezier(.2,.7,.2,1) .2s}
+section.block{margin-top:44px;padding-top:28px;border-top:1px solid var(--line)}
+.driver{display:grid;grid-template-columns:10px 1fr;gap:14px;margin-bottom:18px}
+.driver .pip{width:10px;height:10px;border-radius:50%;margin-top:7px}
+.driver p{color:var(--muted);margin:0}
+.when{margin-top:26px}
+.when h3{display:flex;align-items:baseline;gap:10px;font-size:1.08rem;margin-bottom:10px}
+.when h3 span{color:var(--muted);font-weight:400;font-size:.9rem}
+.tasks{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.tasks li{background:var(--paper);border-radius:12px;padding:13px 16px 13px 46px;position:relative}
+.tasks input{position:absolute;left:15px;top:16px;width:18px;height:18px;accent-color:var(--low)}
+.tasks label{cursor:pointer}
+.tasks li.done label{color:var(--muted);text-decoration:line-through}
+.share{background:var(--paper);border-radius:16px;padding:20px;margin-top:14px}
+.share textarea{width:100%;min-height:96px;border:1px solid var(--line);border-radius:10px;padding:12px;font:inherit;font-size:.95rem;background:var(--bg);color:var(--ink);resize:vertical;margin:8px 0 12px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.note{font-size:.9rem;color:var(--muted);margin-top:40px;line-height:1.55}
+.toast{color:var(--low);font-weight:600;font-size:.95rem}
+@media (max-width:480px){ main{padding-top:28px} .brand{margin-bottom:30px} .scores{gap:10px} .score{padding:14px} .score .band{font-size:1.25rem} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+</head>
+<body>
+<main id="app" aria-live="polite"></main>
+
+<script>
+const SECTIONS = [
+  {id:"company", name:"Your company"},
+  {id:"role", name:"Your role"},
+  {id:"you", name:"You at work"},
+  {id:"cushion", name:"Your safety net"}
+];
+
+// p = points. Risk questions: higher = more exposed. Cushion questions: higher = better prepared.
+const QS = [
+  // Company
+  {id:"health", s:"company", type:"risk", w:1.3, q:"How has your company's business been doing over the past year?",
+   opts:[{t:"Growing strongly",p:0},{t:"Stable",p:1},{t:"Slowing down",p:2},{t:"Shrinking or losing money",p:3},{t:"Not sure",p:1.5}],
+   driver:{title:"The business is slowing", why:"When revenue stalls, companies look for costs to cut, and salaries are usually the biggest one."},
+   tip:{when:"month", t:"Start a quiet job search now. Set alerts for three to five target companies so you aren't starting from zero if cuts come."}},
+  {id:"layoffs", s:"company", type:"risk", w:1.3, q:"Has your company had layoffs in the last 12 months?",
+   opts:[{t:"No",p:0},{t:"One round",p:2},{t:"More than one round",p:3},{t:"Not sure",p:1}],
+   driver:{title:"Recent layoff rounds", why:"Once a company has cut once, further rounds are common as plans get revised."},
+   tip:{when:"week", t:"Make a 'just in case' list: personal contacts of colleagues, work samples you're allowed to keep, and your benefits details."}},
+  {id:"hiring", s:"company", type:"risk", w:1.1, q:"What does hiring look like at your company right now?",
+   opts:[{t:"Actively hiring",p:0},{t:"Hiring only for key roles",p:1},{t:"Hiring freeze",p:2.5},{t:"Open roles and backfills are being cancelled",p:3},{t:"Not sure",p:1}],
+   driver:{title:"Hiring has stopped", why:"Freezes and cancelled roles are often the first visible sign of cost cutting."},
+   tip:{when:"month", t:"Ask your manager plainly how next quarter's headcount plan looks for your team. Managers often share more than you'd expect."}},
+  {id:"changes", s:"company", type:"risk", w:1.1, multi:true, q:"Which of these have happened recently?", help:"Select all that apply.",
+   opts:[{t:"New CEO or senior leadership",p:1.5},{t:"Merger or acquisition",p:2},{t:"Restructuring or reorg announced",p:2},{t:"My manager changed",p:1},{t:"None of these",p:0,none:true}],
+   driver:{title:"Leadership or structural change", why:"New leaders, mergers and reorgs usually bring role reviews and team consolidation."},
+   tip:{when:"month", t:"Get time with any new leader early. Show what your team delivers, using the metrics they care about."}},
+  {id:"funding", s:"company", type:"risk", w:1.0, q:"Which best describes your company?",
+   opts:[{t:"Established and profitable",p:0.5},{t:"Government, nonprofit or education",p:0.5},{t:"Well-funded startup",p:1},{t:"Owned by private equity",p:2},{t:"Startup that needs to raise money soon",p:3},{t:"Not sure",p:1.5}],
+   driver:{title:"Funding pressure", why:"Startups that need to raise soon, and private-equity-owned companies, often cut staff to stretch cash or hit profit targets."},
+   tip:{when:"90", t:"List a few companies in more stable parts of your industry, so you can move on your own terms if you choose to."}},
+  {id:"costcuts", s:"company", type:"risk", w:1.0, multi:true, q:"Have you noticed any cost-cutting signals?", help:"Select all that apply.",
+   opts:[{t:"Travel, perks or events cut",p:1},{t:"Budgets frozen or tools cancelled",p:1.5},{t:"Contractors or vendors let go",p:1.5},{t:"Sudden push to return to office",p:1},{t:"None of these",p:0,none:true}],
+   driver:{title:"Cost-cutting signals", why:"Cuts to travel, tools, vendors and budgets often come before cuts to headcount."}},
+  // Role
+  {id:"revenue", s:"role", type:"risk", w:1.3, q:"How directly does your work connect to revenue?",
+   opts:[{t:"I directly bring in or protect revenue",p:0},{t:"I support teams that bring in revenue",p:1},{t:"I'm in an internal function",p:2},{t:"It's hard to tie my work to business results",p:3}],
+   driver:{title:"Distance from revenue", why:"Work that's hard to tie to money earned or saved is easier to cut on a spreadsheet."},
+   tip:{when:"month", t:"Translate your work into numbers: money earned, money saved, hours saved, or risk avoided. Put two of these in your next update."}},
+  {id:"replace", s:"role", type:"risk", w:1.2, q:"If you left tomorrow, how hard would you be to replace?",
+   opts:[{t:"Very hard, I hold knowledge nobody else has",p:0},{t:"Hard, it would take months",p:1},{t:"Others could cover my work",p:2},{t:"My work could easily be absorbed",p:3}],
+   driver:{title:"Easy to cover", why:"If teammates can absorb your work, your role is easier to consolidate."},
+   tip:{when:"90", t:"Take ownership of something critical and visible: a key system, client relationship, or process people rely on."}},
+  {id:"ai", s:"role", type:"risk", w:1.1, q:"How much of your day-to-day work could AI or automation handle today?",
+   opts:[{t:"Very little",p:0},{t:"Some of it",p:1},{t:"A lot of it",p:2},{t:"Most of it",p:3}],
+   driver:{title:"Automation exposure", why:"Tasks AI can already do are getting more scrutiny in budget reviews."},
+   tip:{when:"90", t:"Become the person on your team who uses AI best. Automate your own repetitive work and show others how, so you lead the change instead of being replaced by it."}},
+  {id:"priority", s:"role", type:"risk", w:1.2, q:"How does leadership see your team or project?",
+   opts:[{t:"A core priority",p:0},{t:"Important, but not top of the list",p:1},{t:"A side project or experiment",p:2.5},{t:"It's being deprioritized",p:3},{t:"Not sure",p:1.5}],
+   driver:{title:"Low-priority team", why:"Side projects and deprioritized teams are usually the first to go."},
+   tip:{when:"month", t:"Look for an internal move toward a core priority area. Transfers are much easier before layoffs than after."}},
+  {id:"duplicates", s:"role", type:"risk", w:0.9, q:"How many people at your company do work similar to yours?",
+   opts:[{t:"Just me, or very few",p:0.5},{t:"A small team",p:1},{t:"Many people",p:2},{t:"Similar roles exist across several teams",p:3}],
+   driver:{title:"Overlapping roles", why:"When many people do similar work, companies tend to consolidate."},
+   tip:{when:"90", t:"Build a specialty that sets you apart from others in the same role, such as a domain, tool, or type of project."}},
+  // You
+  {id:"perf", s:"you", type:"risk", w:1.3, q:"What was your most recent performance rating?",
+   opts:[{t:"Top rating",p:0},{t:"Solid, meets expectations",p:1},{t:"Below expectations or on an improvement plan",p:3},{t:"I haven't had a review yet",p:1.5}],
+   driver:{title:"Performance rating", why:"Ratings are one of the most common inputs when companies decide who stays."},
+   tip:{when:"week", t:"Ask your manager what an 'exceeds' rating looks like for your role this quarter, and agree on two measurable goals."}},
+  {id:"manager", s:"you", type:"risk", w:1.2, q:"How would you describe your relationship with your manager?",
+   opts:[{t:"They actively champion me",p:0},{t:"Good",p:0.5},{t:"Neutral, we don't talk much",p:1.5},{t:"Strained",p:3}],
+   driver:{title:"Manager support", why:"Your manager is often the one who argues to keep you, or doesn't."},
+   tip:{when:"week", t:"Book a short career conversation with your manager. Ask what would make you indispensable to the team this year."}},
+  {id:"visibility", s:"you", type:"risk", w:1.0, q:"Does senior leadership know who you are and what you deliver?",
+   opts:[{t:"Yes, they know my work well",p:0},{t:"Somewhat",p:1},{t:"Not really",p:2}],
+   driver:{title:"Low visibility", why:"When decisions are made a few levels up, people leadership doesn't know are easier to cut."},
+   tip:{when:"month", t:"Send a short monthly wins update to your manager and skip-level manager. Three outcomes, a few lines each."}},
+  {id:"tenure", s:"you", type:"risk", w:0.7, q:"How long have you been at your company?",
+   opts:[{t:"Less than a year",p:2},{t:"1 to 3 years",p:1},{t:"3 to 8 years",p:0.5},{t:"More than 8 years",p:1.2}],
+   driver:{title:"Short tenure", why:"Newer employees have less track record and fewer people inside who'll speak up for them."}},
+  {id:"pay", s:"you", type:"risk", w:0.7, q:"How does your pay compare with others in similar roles?",
+   opts:[{t:"Below average",p:0.5},{t:"About average",p:1},{t:"Above average",p:2},{t:"Not sure",p:1}],
+   driver:{title:"Higher pay", why:"Higher-paid roles save more money when cut, so they get looked at more closely."}},
+  {id:"skills", s:"you", type:"risk", w:0.9, q:"When did you last learn a skill that's in demand in your field?",
+   opts:[{t:"I'm learning something now",p:0},{t:"In the last year",p:1},{t:"It's been a while",p:2}],
+   driver:{title:"Skills need a refresh", why:"Skills that haven't kept pace make it harder both to stay and to move."},
+   tip:{when:"90", t:"Pick one in-demand skill in your field, finish a real project with it in the next 90 days, and add it to your profile."}},
+  // Cushion
+  {id:"savings", s:"cushion", type:"cushion", q:"If your income stopped today, how long could your savings cover essential expenses?",
+   opts:[{t:"Less than a month",p:0},{t:"1 to 3 months",p:1},{t:"3 to 6 months",p:2},{t:"More than 6 months",p:3}],
+   tip:{when:"month", t:"Work toward 3 to 6 months of essential expenses. Start by listing your must-pay costs so you know your real monthly number, and hold off on big new commitments like loans."}},
+  {id:"resume", s:"cushion", type:"cushion", q:"When did you last update your resume and LinkedIn profile?",
+   opts:[{t:"In the last 3 months",p:3},{t:"In the last year",p:2},{t:"More than a year ago",p:1},{t:"Not since I started this job",p:0}],
+   tip:{when:"week", t:"Update your resume and LinkedIn with your wins from the last 12 months, while the details are still fresh."}},
+  {id:"network", s:"cushion", type:"cushion", q:"How many people outside your company could you comfortably ask for a referral tomorrow?",
+   opts:[{t:"None",p:0},{t:"1 to 5",p:1},{t:"6 to 15",p:2},{t:"More than 15",p:3}],
+   tip:{when:"month", t:"Reconnect with five former colleagues this month. A friendly message now makes asking for a referral later feel natural."}},
+  {id:"income", s:"cushion", type:"cushion", q:"Do you have any income besides your salary?",
+   opts:[{t:"No, and others depend on my income",p:0},{t:"No, but only I depend on it",p:1},{t:"Some side income",p:2},{t:"A partner's income or other steady income",p:3}],
+   tip:{when:"90", t:"Explore a small second income stream that uses your skills, such as freelancing, consulting, or teaching."}},
+  {id:"demand", s:"cushion", type:"cushion", q:"How often do recruiters contact you about roles?",
+   opts:[{t:"Often",p:3},{t:"Now and then",p:2},{t:"Rarely",p:1},{t:"Never",p:0}],
+   tip:{when:"month", t:"Make your LinkedIn profile visible as open to work for recruiters only, and talk to one recruiter to see how the market values your role."}},
+  {id:"docs", s:"cushion", type:"cushion", q:"Do you know your notice period, severance terms and benefits, and keep your own copies?",
+   opts:[{t:"Yes, all of it",p:3},{t:"Partly",p:1.5},{t:"No",p:0}],
+   tip:{when:"week", t:"Read your offer letter and company policies for notice period, severance and benefits, and save personal copies."}}
+];
+
+const WHEN = {week:{t:"This week",s:"quick wins"}, month:{t:"This month",s:"build momentum"}, "90":{t:"Next 90 days",s:"strengthen your position"}};
+
+let answers = {};
+let step = -1;
+const app = document.getElementById("app");
+
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+
+function points(q){
+  const a = answers[q.id];
+  if(a===undefined) return null;
+  if(q.multi){ return Math.min(3, a.reduce((s,i)=>s+q.opts[i].p,0)); }
+  return q.opts[a].p;
+}
+
+const brand = `<div class="brand"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="6" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="13" y1="3" x2="13" y2="23" stroke="currentColor" stroke-width="1"/><line x1="3" y1="13" x2="23" y2="13" stroke="currentColor" stroke-width="1"/><circle cx="18" cy="8" r="3" fill="var(--low)"/></svg>Layoff Readiness Check</div>`;
+
+function quadSVG(withDot){
+  // x: cushion (left thin, right strong). y: exposure (top high, bottom low).
+  return `<svg class="quad ${withDot?'result-quad':''}" viewBox="0 0 340 330" role="img" aria-label="Chart with exposure on the vertical axis and safety net on the horizontal axis, divided into four zones">
+    <rect x="30" y="10" width="150" height="150" rx="10" fill="var(--high)" opacity=".16"/>
+    <rect x="186" y="10" width="150" height="150" rx="10" fill="var(--mid)" opacity=".16"/>
+    <rect x="30" y="166" width="150" height="150" rx="10" fill="var(--mid)" opacity=".12"/>
+    <rect x="186" y="166" width="150" height="150" rx="10" fill="var(--low)" opacity=".16"/>
+    <text class="zone-label" x="44" y="34">Act this month</text>
+    <text class="zone-label" x="200" y="34">Exposed, but ready</text>
+    <text class="zone-label" x="44" y="190">Calm now, unprotected</text>
+    <text class="zone-label" x="200" y="190">Steady ground</text>
+    <text class="axis" x="14" y="163" transform="rotate(-90 14 163)" text-anchor="middle">Job exposure</text>
+    <text class="axis" x="183" y="328" text-anchor="middle">Safety net</text>
+    <text class="axis" x="32" y="328">thin</text>
+    <text class="axis" x="334" y="328" text-anchor="end">strong</text>
+    ${withDot?`<g id="dot" style="transform:translate(183px,163px)"><circle r="15" fill="var(--ink)" opacity=".15"/><circle r="8" fill="var(--ink)"/><circle r="3" fill="var(--paper)"/></g>`:''}
+  </svg>`;
+}
+
+function renderIntro(){
+  step=-1;
+  app.innerHTML = `${brand}
+    <h1>How safe is your job, really?</h1>
+    <p class="lede">Answer ${QS.length} quick questions about your company, your role and your finances. You'll see how exposed your job is, how cushioned you are if it goes, and exactly what to do next.</p>
+    ${quadSVG(false)}
+    <div class="row"><button class="btn" id="start">Start the check</button></div>
+    <p class="meta" style="margin-top:14px">Takes about 4 minutes. Your answers never leave your browser.</p>`;
+  document.getElementById("start").onclick=()=>{step=0;renderQ();};
+  window.scrollTo(0,0);
+}
+
+function sectionProgress(){
+  return SECTIONS.map(sec=>{
+    const qs = QS.filter(q=>q.s===sec.id);
+    const done = qs.filter(q=>answers[q.id]!==undefined && (!q.multi || answers[q.id].length)).length;
+    return `<div class="seg" title="${sec.name}"><i style="width:${done/qs.length*100}%"></i></div>`;
+  }).join("");
+}
+
+function renderQ(){
+  const q = QS[step];
+  const sec = SECTIONS.find(s=>s.id===q.s);
+  const a = answers[q.id];
+  const sel = i => q.multi ? (a||[]).includes(i) : a===i;
+  app.innerHTML = `${brand}
+    <div class="progress" aria-hidden="true">${sectionProgress()}</div>
+    <div class="qtop"><span>${sec.name}</span><span>Question ${step+1} of ${QS.length}</span></div>
+    <h2 class="qtext" id="qh">${esc(q.q)}</h2>
+    ${q.help?`<p class="qhelp">${q.help}</p>`:''}
+    <div class="opts" role="group" aria-labelledby="qh">
+      ${q.opts.map((o,i)=>`<button class="opt ${q.multi?'multi':''}" data-i="${i}" aria-pressed="${sel(i)}"><span class="mark"></span>${esc(o.t)}</button>`).join("")}
+    </div>
+    <div class="qnav">
+      <button class="link" id="back">${step===0?'Back to start':'Previous question'}</button>
+      ${q.multi?`<button class="btn" id="next" ${(a&&a.length)?'':'disabled'}>${step===QS.length-1?'See my results':'Continue'}</button>`:''}
+    </div>`;
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>choose(q,+b.dataset.i));
+  document.getElementById("back").onclick=()=>{ if(step===0) renderIntro(); else {step--;renderQ();} };
+  const nx=document.getElementById("next"); if(nx) nx.onclick=advance;
+  window.scrollTo(0,0);
+}
+
+function choose(q,i){
+  if(q.multi){
+    let a = answers[q.id] ? [...answers[q.id]] : [];
+    if(q.opts[i].none){ a = a.includes(i)?[]:[i]; }
+    else{
+      a = a.filter(x=>!q.opts[x].none);
+      a = a.includes(i) ? a.filter(x=>x!==i) : [...a,i];
+    }
+    answers[q.id]=a; renderQ();
+  } else {
+    answers[q.id]=i;
+    app.querySelectorAll(".opt").forEach(b=>b.setAttribute("aria-pressed", +b.dataset.i===i));
+    setTimeout(advance,180);
+  }
+}
+function advance(){ if(step<QS.length-1){step++;renderQ();} else renderResult(); }
+
+function compute(){
+  const risk = QS.filter(q=>q.type==="risk"), cush = QS.filter(q=>q.type==="cushion");
+  const rNum = risk.reduce((s,q)=>s+points(q)*q.w,0), rDen = risk.reduce((s,q)=>s+3*q.w,0);
+  const exposure = Math.round(rNum/rDen*100);
+  const cushion = Math.round(cush.reduce((s,q)=>s+points(q),0)/(3*cush.length)*100);
+  return {exposure, cushion};
+}
+function expBand(x){ return x<25?["Low","var(--low)"]:x<45?["Moderate","var(--mid)"]:x<65?["Elevated","var(--high)"]:["High","var(--high)"]; }
+function cushBand(x){ return x<30?["Thin","var(--high)"]:x<55?["Building","var(--mid)"]:x<75?["Solid","var(--low)"]:["Strong","var(--low)"]; }
+
+function verdict(e,c){
+  const exposed = e>=45, ready = c>=55;
+  if(exposed && !ready) return ["Act this month","Your job shows several risk signals and your safety net is thin. There's no need to panic, but the steps below are worth starting now, while you still have time on your side."];
+  if(exposed && ready) return ["Exposed, but ready","Your job shows real risk signals, but you've built a solid cushion. Keep it strong and focus on lowering your exposure at work."];
+  if(!exposed && !ready) return ["Calm now, unprotected","Your job looks fairly stable today, but your safety net is thin. Things can change quickly, so build your cushion while there's no pressure."];
+  return ["Steady ground","Your job looks fairly stable and you're well prepared. Keep the habits that got you here, and check in again every few months."];
+}
+
+function renderResult(){
+  step = QS.length;
+  const {exposure,cushion} = compute();
+  const [eb,ec]=expBand(exposure), [cb,cc]=cushBand(cushion);
+  const [vt,vd]=verdict(exposure,cushion);
+
+  const drivers = QS.filter(q=>q.type==="risk" && points(q)>=2 && q.driver)
+    .sort((a,b)=>points(b)*b.w-points(a)*a.w).slice(0,3);
+
+  const tasks = [];
+  QS.forEach(q=>{
+    const p=points(q);
+    if(!q.tip) return;
+    if(q.type==="risk" && p>=2) tasks.push({when:q.tip.when,t:q.tip.t,score:p*q.w});
+    if(q.type==="cushion" && p<=1.5) tasks.push({when:(q.id==="savings"&&p===0)?"week":q.tip.when,t:q.tip.t,score:(3-p)*1.2});
+  });
+  if(tasks.length<4){
+    tasks.push({when:"month",t:"Keep a running list of your wins with numbers attached. It makes reviews, promotions and job searches far easier.",score:0});
+    tasks.push({when:"90",t:"Take this check again in three months to see whether anything has shifted.",score:0});
+  }
+  const groups = ["week","month","90"].map(w=>({w,items:tasks.filter(t=>t.when===w).sort((a,b)=>b.score-a.score).slice(0,4)})).filter(g=>g.items.length);
+
+  const shareText = `I just took a free Layoff Readiness Check.\nJob exposure: ${eb}. Safety net: ${cb}.\nIt takes 4 minutes and your answers never leave your browser. Worth checking where you stand.`;
+
+  app.innerHTML = `${brand}
+    <p class="meta" style="margin-bottom:6px">Your result</p>
+    <h1 class="verdict">${vt}</h1>
+    <p class="lede">${vd}</p>
+    ${quadSVG(true)}
+    <div class="scores">
+      <div class="score"><div class="lab">Job exposure</div><div class="band">${eb}</div><div class="bar"><i id="b1" style="background:${ec}"></i></div></div>
+      <div class="score"><div class="lab">Safety net</div><div class="band">${cb}</div><div class="bar"><i id="b2" style="background:${cc}"></i></div></div>
+    </div>
+
+    <section class="block">
+      <h2>What's driving your exposure</h2>
+      ${drivers.length? drivers.map(q=>`<div class="driver"><span class="pip" style="background:${points(q)>=2.5?'var(--high)':'var(--mid)'}"></span><div><h3>${q.driver.title}</h3><p>${q.driver.why}</p></div></div>`).join("")
+        : `<p>No strong risk signals stood out in your answers. That's good news. The plan below focuses on keeping you prepared.</p>`}
+    </section>
+
+    <section class="block">
+      <h2>Your action plan</h2>
+      <p class="meta">Tick things off as you go. Start with this week's list.</p>
+      ${groups.map(g=>`<div class="when"><h3>${WHEN[g.w].t} <span>${WHEN[g.w].s}</span></h3><ul class="tasks">
+        ${g.items.map((t,i)=>`<li><input type="checkbox" id="t-${g.w}-${i}"><label for="t-${g.w}-${i}">${esc(t.t)}</label></li>`).join("")}
+      </ul></div>`).join("")}
+    </section>
+
+    <section class="block">
+      <h2>Share it with someone who'd find it useful</h2>
+      <div class="share">
+        <p class="meta" style="margin:0">Your answers aren't included, only your two scores.</p>
+        <textarea id="sharetext" aria-label="Text to share">${esc(shareText)}</textarea>
+        <div class="row"><button class="btn" id="copy">Copy text</button><span class="toast" id="toast" role="status"></span></div>
+      </div>
+      <div class="row" style="margin-top:22px"><button class="btn-quiet" id="redo">Change my answers</button><button class="btn-quiet" id="restart">Start over</button></div>
+    </section>
+
+    <p class="note">This is a self-assessment based on common patterns in how companies make layoff decisions. It isn't a prediction, and no tool can know your company's plans. Use it to spot blind spots and get prepared. If worry about your job is weighing on you, talking it through with someone you trust can really help.</p>`;
+
+  app.querySelectorAll(".tasks input").forEach(c=>c.onchange=()=>c.closest("li").classList.toggle("done",c.checked));
+  document.getElementById("copy").onclick=async()=>{
+    const ta=document.getElementById("sharetext"), toast=document.getElementById("toast");
+    try{ await navigator.clipboard.writeText(ta.value); toast.textContent="Copied"; }
+    catch(e){ ta.focus(); ta.select(); try{document.execCommand("copy");toast.textContent="Copied";}catch(_){toast.textContent="Press Ctrl+C or Cmd+C to copy";} }
+    setTimeout(()=>toast.textContent="",2500);
+  };
+  document.getElementById("redo").onclick=()=>{step=0;renderQ();};
+  document.getElementById("restart").onclick=()=>{answers={};renderIntro();};
+
+  window.scrollTo(0,0);
+  // place dot: plot area x 30..336, y 10..316
+  const x = 30 + 12 + (cushion/100)*(306-24);
+  const y = 10 + 12 + (1-exposure/100)*(306-24);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    document.getElementById("dot").style.transform=`translate(${x}px,${y}px)`;
+    document.getElementById("b1").style.width=Math.max(4,exposure)+"%";
+    document.getElementById("b2").style.width=Math.max(4,cushion)+"%";
+  }));
+}
+
+renderIntro();
+</script>
+</body>
+</html>
